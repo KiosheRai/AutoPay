@@ -24,5 +24,10 @@ namespace AutoPay
         {
             InitializeComponent();
         }
+
+        private void TestButton(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Test");
+        }
     }
 }
