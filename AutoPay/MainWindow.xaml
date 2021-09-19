@@ -7,9 +7,8 @@
         xmlns:local="clr-namespace:AutoPay"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Style="{StaticResource MaterialDesignFlatButton }" 
-                Content="TestButton"
-                Click="TestButton"/>
-    </Grid>
+    
+    <Frame x:Name="MainFrame"
+           NavigationUIVisibility="Hidden"/>
+    
 </Window>
