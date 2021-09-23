@@ -1,4 +1,5 @@
-﻿<Page x:Class="AutoPay.MainPage"
+﻿<Page x:Class="AutoPay.Drivers"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +7,7 @@
       xmlns:local="clr-namespace:AutoPay"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
+      Title="Drivers">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,20 +20,22 @@
             <Border Background="#FF503D70" Grid.Column="0"/>
 
             <StackPanel>
-            <Button Grid.Row="0" Height="112" Content="AutoPay" FontWeight="Bold"
-                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                <Button Grid.Row="0" Height="100"
+                    Style="{StaticResource MaterialDesignFlatAccentButton}"
+                    Click="Button_Main" IsCancel="True">
+                    <materialDesign:PackIcon Kind="About"/>
+                </Button>
+                <Button Grid.Row="1" Height="100" Content="Drivers" Foreground="White"
+                    Style="{StaticResource MaterialDesignFlatAccentButton}"
                     />
-            <Button Grid.Row="1" Height="112" Content="Drivers"
-                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                    Click="Button_Drivers"/>
-            <Button Grid.Row="2" Height="112" Content="Mark"
-                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                <Button Grid.Row="2" Height="100" Content="Mark"
+                    Style="{StaticResource MaterialDesignFlatAccentButton}"
                     Click="Button_Mark"/>
-            <Button Grid.Row="3" Height="112" Content="Calculate"
-                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                <Button Grid.Row="3" Height="100" Content="Calculate"
+                    Style="{StaticResource MaterialDesignFlatAccentButton}"
                     Click="Button_Caclulate"/>
             </StackPanel>
         </Grid>
-        
+
     </Grid>
 </Page>

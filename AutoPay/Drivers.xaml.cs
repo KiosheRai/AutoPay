@@ -16,18 +16,18 @@ using System.Windows.Shapes;
 namespace AutoPay
 {
     /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
+    /// Логика взаимодействия для Drivers.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class Drivers : Page
     {
-        public MainPage()
+        public Drivers()
         {
             InitializeComponent();
         }
 
-        private void Button_Drivers(object sender, RoutedEventArgs e)
+        private void Button_Main(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Drivers.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         private void Button_Mark(object sender, RoutedEventArgs e)
