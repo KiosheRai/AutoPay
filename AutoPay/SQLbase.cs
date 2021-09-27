@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Course_Project
+namespace AutoPay
 {
     class SQLbase
     {
-        private static string NameOfDataBase = "";
+        private static string NameOfDataBase = "AutoPay";
 
         public SQLbase() { }
 

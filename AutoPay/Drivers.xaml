@@ -16,26 +16,61 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0">
-            <Border Background="#FF503D70" Grid.Column="0"/>
+        <Grid Grid.Row="0" Grid.Column="0" Background="#FF512DA8">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-            <StackPanel>
-                <Button Grid.Row="0" Height="100"
-                    Style="{StaticResource MaterialDesignFlatAccentButton}"
-                    Click="Button_Main" IsCancel="True">
-                    <materialDesign:PackIcon Kind="About"/>
-                </Button>
-                <Button Grid.Row="1" Height="100" Content="Drivers" Foreground="White"
-                    Style="{StaticResource MaterialDesignFlatAccentButton}"
-                    />
-                <Button Grid.Row="2" Height="100" Content="Mark"
-                    Style="{StaticResource MaterialDesignFlatAccentButton}"
+            <Button Grid.Row="0" Height="auto" Content="Главная" 
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                    Click="Button_Main" IsCancel="True"/>
+            <Button Grid.Row="1" Height="auto" Content="Водители"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                    FontWeight="Bold" Foreground="AntiqueWhite"/>
+            <Button Grid.Row="2" Height="auto" Content="Отметить"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                     Click="Button_Mark"/>
-                <Button Grid.Row="3" Height="100" Content="Calculate"
-                    Style="{StaticResource MaterialDesignFlatAccentButton}"
+            <Button Grid.Row="3" Height="auto" Content="Рассчитать"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                     Click="Button_Caclulate"/>
-            </StackPanel>
         </Grid>
 
+        <ListView Height="auto" x:Name="listDrivers" Grid.Column="1">
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=id}" 
+                                            Header="№" Width="40"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FIO}" 
+                                            Header="ФИО" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=rate}" 
+                                            Header="Ставка"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=experience}" 
+                                            Header="Стаж"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=children}" 
+                                            Header="Кол-во детей"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Column="2" Background="White">
+            <Label Content="Редактирование" HorizontalAlignment="Center"
+                   FontWeight="Bold" FontSize="18" Margin="0 0 0 20"/>
+
+            <Button Content="Добавить" Margin="10"/>
+            <Label Content="Выберите об'ект!" HorizontalAlignment="Center"
+                   Foreground="Red" Visibility="Hidden"
+                   x:Name="AlarmText" Margin="0 40 0 0"/>
+            <Button Content="Удалить" Margin="10 0 10 10"
+                    x:Name="DeleteDriver" Click="DeleteDriver_Click"/>
+            <Button Content="Просмотреть" Margin="10 0 10 10"/>
+
+            <Label Content="lorem" HorizontalAlignment="Center"
+                   FontWeight="bold" FontSize="14" 
+                   x:Name="CountDriversText" Margin="0 40 0 0"/>
+        </StackPanel>
+        
     </Grid>
 </Page>

@@ -20,7 +20,6 @@ CREATE TABLE Driver(
 )  
 GO
 
-
 CREATE TABLE Child(
 	driver int not null,
 	FIO nchar(30) not null,
@@ -68,3 +67,16 @@ CONSTRAINT Fore_Paycheck_Decrease FOREIGN KEY (decrease) REFERENCES decrease([id
 CONSTRAINT Fore_Paycheck_Bonus FOREIGN KEY (bonus) REFERENCES bonus([id])
 )
 GO
+
+INSERT INTO Driver(FIO, rate, experience, children) 
+values
+('Егор Летов', 2, 2, 0),
+('Тимой Рудольфович', 1, 2, 0),
+('Евгений Сташинский', 1, 2, 0),
+('Зьмицер Вишнёв', 20, 20, 0),
+('Анна Зеленская', 5, 2, 0)
+GO
+
+delete Driver where id = 1
+
+select * from Driver

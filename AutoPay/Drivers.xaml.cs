@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace AutoPay
 {
@@ -23,6 +24,34 @@ namespace AutoPay
         public Drivers()
         {
             InitializeComponent();
+            showInfo();
+        }
+
+        private void showInfo()
+        {
+            DataTable Table = SQLbase.Select($"SELECT * FROM Driver");
+            listDrivers.ItemsSource = Table.DefaultView;
+
+            CountDriversText.Content = $"Кол-во водителей: {Table.Rows.Count}";
+        }
+
+        private void DeleteDriver_Click(object sender, RoutedEventArgs e)
+        {
+            int i = listDrivers.SelectedIndex;
+
+            if (i == -1)
+            {
+                AlarmText.Visibility = Visibility.Visible;
+                return;
+            }
+
+            AlarmText.Visibility = Visibility.Hidden;
+
+            DataTable Table = SQLbase.Select($"SELECT * FROM Driver");
+
+            SQLbase.Select($"delete Driver where id = {Table.Rows[i][0]}");
+
+            showInfo();
         }
 
         private void Button_Main(object sender, RoutedEventArgs e)
@@ -39,5 +68,7 @@ namespace AutoPay
         {
             throw new Exception();
         }
+
+        
     }
 }
