@@ -40,9 +40,10 @@
 
         <ListView Height="auto" x:Name="listDrivers" Grid.Column="1">
             <ListView.View>
-                <GridView >
+                
+                <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=id}" 
-                                            Header="№" Width="40"/>
+                                            Header="№" Width="40" />
                     <GridViewColumn DisplayMemberBinding="{Binding Path=FIO}" 
                                             Header="ФИО" Width="160"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=rate}" 
