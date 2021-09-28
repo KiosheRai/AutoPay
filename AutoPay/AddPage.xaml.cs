@@ -24,5 +24,31 @@ namespace AutoPay
         {
             InitializeComponent();
         }
+
+
+        private void Button_Main(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+        }
+
+        private void Button_Drivers(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Drivers.xaml", UriKind.Relative));
+        }
+
+        private void Button_Mark(object sender, RoutedEventArgs e)
+        {
+            throw new Exception();
+        }
+
+        private void Button_Caclulate(object sender, RoutedEventArgs e)
+        {
+            throw new Exception();
+        }
+
+        private void Button_Add(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

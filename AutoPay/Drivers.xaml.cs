@@ -69,6 +69,9 @@ namespace AutoPay
             throw new Exception();
         }
 
-        
+        private void Button_DriverAdd(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AddPage.xaml", UriKind.Relative));
+        }
     }
 }
