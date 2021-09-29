@@ -12,7 +12,7 @@ DROP TABLE Driver;
 
 CREATE TABLE Driver(
 	id int identity(1,1),
-	FIO nchar(30) not null,
+	FIO nchar(40) not null,
 	rate float not null,
 	experience int not null,
 	children int not null,
@@ -22,7 +22,7 @@ GO
 
 CREATE TABLE Child(
 	driver int not null,
-	FIO nchar(30) not null,
+	FIO nchar(40) not null,
 	birthday date not null,
 	CONSTRAINT Fore_Child_Driver FOREIGN KEY (driver) REFERENCES Driver([id])
 )  
@@ -70,16 +70,34 @@ GO
 
 INSERT INTO Driver(FIO, rate, experience, children) 
 values
-('Егор Летов', 2, 2, 0),
+('Егор Летов', 2, 2, 1),
 ('Тимой Рудольфович', 1, 2, 0),
-('Евгений Сташинский', 1, 2, 0),
-('Зьмицер Вишнёв', 20, 20, 0),
-('Анна Зеленская', 5, 2, 0),
+('Евгений Сташинский', 1, 2, 1),
+('Зьмицер Вишнёв', 20, 20, 2),
+('Анна Зеленская', 5, 2, 1),
 ('Анно Хидэаки', 20, 20, 0),
 ('Йкко Таро', 10, 20, 0),
 ('Кадзима Гений', 13, 21, 0)
 GO
 
+INSERT INTO Child 
+values
+(1, 'Петровский Андрей', '17-07-2003'),
+(3, 'Скребец Татьяна', '09-03-2003'),
+(4, 'Алфимов Арсэн', '29-03-2003'),
+(5, 'Лях Артём', '10-04-2003'),
+(4, 'Сидоренко Дарья', '20-08-2003')
+GO
+
+
+
+SET DATEFORMAT DMY;
+GO
+
+
+
 delete Driver where id = 1
 
 select * from Driver
+
+

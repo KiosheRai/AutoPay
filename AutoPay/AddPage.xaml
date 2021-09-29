@@ -54,7 +54,8 @@
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Background="White" materialDesign:HintAssist.Hint="Ставка"
                      x:Name="formRate" Margin="10" MaxLength="5"/>
-            <Button Content="Добавить" Width="150" Margin="10" Click="Button_Add"/>
+            <Button Content="Добавить" Width="150"
+                    Click="Button_Add"/>
         </StackPanel>
 
         <StackPanel Grid.Column="2" Background="White">
@@ -62,10 +63,6 @@
                    FontWeight="Bold" FontSize="18" Margin="0 0 0 20"/>
 
             <Button Content="Назад" Margin="10" Click="Button_Drivers"/>
-            <Label Content="Выберите об'ект!" HorizontalAlignment="Center"
-                   Foreground="Red" Visibility="Hidden"
-                   x:Name="AlarmText" Margin="0 40 0 0"/>
         </StackPanel>
-
     </Grid>
 </Page>
