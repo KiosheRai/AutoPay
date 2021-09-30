@@ -78,5 +78,27 @@ namespace AutoPay
         {
             NavigationService.Navigate(new Uri("/AddPage.xaml", UriKind.Relative));
         }
+
+        private void ShowCurentDriver(object sender, RoutedEventArgs e)
+        {
+            int i = listDrivers.SelectedIndex;
+
+            if (i == -1)
+            {
+                AlarmText.Visibility = Visibility.Visible;
+                return;
+            }
+
+            AlarmText.Visibility = Visibility.Hidden;
+
+            DataTable Table = SQLbase.Select($"SELECT * FROM Driver");
+
+
+            NavigationService nav;
+            nav = NavigationService.GetNavigationService(this);
+            
+            ShowDriverInfo nextPage = new ShowDriverInfo(Int32.Parse(Table.Rows[i][0].ToString()));
+            nav.Navigate(nextPage);
+        }
     }
 }

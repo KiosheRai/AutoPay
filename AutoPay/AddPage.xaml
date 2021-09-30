@@ -55,7 +55,7 @@
                      Background="White" materialDesign:HintAssist.Hint="Ставка"
                      x:Name="formRate" Margin="10" MaxLength="5"/>
             <Button Content="Добавить" Width="150"
-                    Click="Button_Add"/>
+                    Click="Button_Add" IsDefault="True"/>
         </StackPanel>
 
         <StackPanel Grid.Column="2" Background="White">
