@@ -22,6 +22,7 @@ namespace AutoPay
     public partial class ShowDriverInfo : Page
     {
         private int id;
+        private int childCount;
 
         public ShowDriverInfo()
         {
@@ -39,8 +40,9 @@ namespace AutoPay
         }
         private void showName()
         {
-            DataTable table = SQLbase.Select($"select FIO from Driver where id = {id}");
+            DataTable table = SQLbase.Select($"select FIO, children from Driver where id = {id}");
             NameOfDriver.Text = table.Rows[0][0].ToString();
+            childCount = int.Parse(table.Rows[0][1].ToString());
         }
         private void showInfo()
         {   
@@ -178,7 +180,18 @@ namespace AutoPay
 
             if (isGood)
             {
-                
+                DateTime d = DateT.SelectedDate.Value;
+                SQLbase.Insert($"insert into Child(driver , FIO, birthday) values ({id}, '{name} {surname} {secondname}', '{d.Day}-{d.Month}-{d.Year}')");
+                childCount += 1;
+                SQLbase.Insert($"UPDATE driver SET children = '{childCount}' where id = {id}");
+                MessageBox.Show("Ребёнок добавлен!");
+
+                formName.Text = "";
+                formSurnameName.Text = "";
+                formSecondName.Text = "";
+                DateT.DisplayDate = DateTime.Today;
+
+                showInfo();
             }
         }
     }

@@ -60,7 +60,7 @@
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Background="White" materialDesign:HintAssist.Hint="Отчество"
                      x:Name="formSecondName" Margin="10" MaxLength="10"/>
-                    <Button Content="Добавить" Width="150"
+                    <Button Content="Добавить" Width="150" IsDefault="True"
                             Click="ButtonAddChild"/>
                 </StackPanel>
 
