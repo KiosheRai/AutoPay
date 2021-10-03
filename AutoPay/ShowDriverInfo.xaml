@@ -83,7 +83,7 @@
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FIO}" 
                                             Header="ФИО" Width="200"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=birthday}" 
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=birthday, StringFormat={}{0:D}}" 
                                             Header="Дата рождения" Width="auto"/>
                     </GridView>
                 </ListView.View>

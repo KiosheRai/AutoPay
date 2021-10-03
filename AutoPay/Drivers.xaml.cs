@@ -29,10 +29,10 @@ namespace AutoPay
 
         private void showInfo()
         {
-            DataTable Table = SQLbase.Select($"SELECT * FROM Driver");
-            listDrivers.ItemsSource = Table.DefaultView;
-
-            CountDriversText.Content = $"Кол-во водителей: {Table.Rows.Count}";
+            DataTable table = SQLbase.Select($"SELECT * FROM Driver");
+            listDrivers.ItemsSource = table.DefaultView;
+            
+            CountDriversText.Content = $"Кол-во водителей: {table.Rows.Count}";
         }
 
         private void DeleteDriver_Click(object sender, RoutedEventArgs e)

@@ -48,7 +48,9 @@ namespace AutoPay
         {   
 
             DataTable table = SQLbase.Select($"select FIO, birthday from Child where driver = {id}");
-
+            string s = table.Rows[0][0].ToString();
+            
+            listChildren.ItemsSource = table.DefaultView;
         }
 
         private void Button_Main(object sender, RoutedEventArgs e)
