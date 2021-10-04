@@ -21,6 +21,7 @@ CREATE TABLE Driver(
 GO
 
 CREATE TABLE Child(
+	id int identity(1,1),
 	driver int not null,
 	FIO nchar(40) not null,
 	birthday date not null,
@@ -80,7 +81,7 @@ values
 ('Кадзима Гений', 13, 21, 0)
 GO
 
-INSERT INTO Child 
+INSERT INTO Child(driver, FIO, birthday)
 values
 (1, 'Петровский Андрей', '17-07-2003'),
 (3, 'Скребец Татьяна', '09-03-2003'),
@@ -89,15 +90,26 @@ values
 (4, 'Сидоренко Дарья', '20-08-2003')
 GO
 
-
+create trigger trig_1
+on Driver
+instead of delete
+as
+if exists (select * from Deleted Driver join Child on Driver.id = Child.driver)
+begin 
+delete from Child where driver in (select driver from deleted)
+begin
+delete from Driver where id in (select id from deleted)
+end
+end
 
 SET DATEFORMAT DMY;
 GO
 
 
 
-delete Driver where id = 1
+delete Driver where id = 6
+select count(*) from Child where driver = 10
 
 select * from Driver
-
+select * from Child
 

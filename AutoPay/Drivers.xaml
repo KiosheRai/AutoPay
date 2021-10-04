@@ -67,7 +67,7 @@
             <Button Content="Удалить" Margin="10 0 10 10"
                     x:Name="DeleteDriver" Click="DeleteDriver_Click"/>
             <Button Content="Просмотреть" Margin="10 0 10 10"
-                    Click="ShowCurentDriver"/>
+                    Click="ShowCurentDriver" IsDefault="True"/>
 
             <Label Content="lorem" HorizontalAlignment="Center"
                    FontWeight="bold" FontSize="14" 

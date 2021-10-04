@@ -49,11 +49,6 @@ namespace AutoPay
 
             DataTable Table = SQLbase.Select($"SELECT * FROM Driver");
 
-            if(Table.Rows[i][4] != "0")
-            {
-                SQLbase.Select($"delete Child where driver = {Table.Rows[i][0]}");
-            }
-
             SQLbase.Select($"delete Driver where id = {Table.Rows[i][0]}");
 
             showInfo();

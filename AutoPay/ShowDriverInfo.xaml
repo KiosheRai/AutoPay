@@ -81,6 +81,8 @@
             <ListView Height="auto" x:Name="listChildren" Grid.Row="1">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=id}" 
+                                            Header="№" Width="auto"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FIO}" 
                                             Header="ФИО" Width="200"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=birthday, StringFormat={}{0:D}}" 

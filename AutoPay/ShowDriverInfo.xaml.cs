@@ -22,7 +22,6 @@ namespace AutoPay
     public partial class ShowDriverInfo : Page
     {
         private int id;
-        private int childCount;
 
         public ShowDriverInfo()
         {
@@ -40,15 +39,13 @@ namespace AutoPay
         }
         private void showName()
         {
-            DataTable table = SQLbase.Select($"select FIO, children from Driver where id = {id}");
+            DataTable table = SQLbase.Select($"select FIO from Driver where id = {id}");
             NameOfDriver.Text = table.Rows[0][0].ToString();
-            childCount = int.Parse(table.Rows[0][1].ToString());
         }
         private void showInfo()
         {   
 
-            DataTable table = SQLbase.Select($"select FIO, birthday from Child where driver = {id}");
-            string s = table.Rows[0][0].ToString();
+            DataTable table = SQLbase.Select($"select id, FIO, birthday from Child where driver = {id}");
             
             listChildren.ItemsSource = table.DefaultView;
         }
@@ -75,7 +72,22 @@ namespace AutoPay
 
         private void DeleteChild(object sender, RoutedEventArgs e)
         {
+            int i = listChildren.SelectedIndex;
 
+            if (i == -1)
+            {
+                AralmMessage.Visibility = Visibility.Visible;
+                return;
+            }
+
+            AralmMessage.Visibility = Visibility.Hidden;
+
+            DataTable Table = SQLbase.Select($"SELECT * FROM Child");
+
+            SQLbase.Select($"delete Child where id = {Table.Rows[i][0]}");
+
+            SQLbase.Insert($"UPDATE driver SET children = (select count(*) from Child where driver = {Table.Rows[i][1]}) where id = {Table.Rows[i][1]}");
+            showInfo();
         }
 
         private void ButtonAddChild(object sender, RoutedEventArgs e)
@@ -184,8 +196,7 @@ namespace AutoPay
             {
                 DateTime d = DateT.SelectedDate.Value;
                 SQLbase.Insert($"insert into Child(driver , FIO, birthday) values ({id}, '{name} {surname} {secondname}', '{d.Day}-{d.Month}-{d.Year}')");
-                childCount += 1;
-                SQLbase.Insert($"UPDATE driver SET children = '{childCount}' where id = {id}");
+                SQLbase.Insert($"UPDATE driver SET children = (select count(*) from Child where driver = {id})");
                 MessageBox.Show("Ребёнок добавлен!");
 
                 formName.Text = "";
