@@ -12,17 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace AutoPay
 {
     /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
+    /// Логика взаимодействия для Mark.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class Mark : Page
     {
-        public MainPage()
+        public Mark()
         {
             InitializeComponent();
+            showInfo();
+        }
+
+        private void showInfo()
+        {
+            DataTable table = SQLbase.Select($"SELECT * FROM Driver");
+            listDrivers.ItemsSource = table.DefaultView;
+        }
+
+        private void Button_Main(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         private void Button_Drivers(object sender, RoutedEventArgs e)

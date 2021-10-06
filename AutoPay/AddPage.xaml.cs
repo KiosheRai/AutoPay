@@ -38,7 +38,7 @@ namespace AutoPay
 
         private void Button_Mark(object sender, RoutedEventArgs e)
         {
-            throw new Exception();
+            NavigationService.Navigate(new Uri("/Mark.xaml", UriKind.Relative));
         }
 
         private void Button_Caclulate(object sender, RoutedEventArgs e)
