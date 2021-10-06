@@ -61,11 +61,17 @@
                    FontWeight="Bold" FontSize="18" Margin="0 0 0 20"/>
 
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Background="White" materialDesign:HintAssist.Hint="Часы работы"
+                     Background="White" materialDesign:HintAssist.Hint="Кол-во часов работы"
                      x:Name="formTime" Margin="10" MaxLength="2"/>
-
-            <Button Content="Отметить" Margin="10" Click="Button_Mark"/>
+            <StackPanel Orientation="Vertical" x:Name="RadioButtonTypeDay">
+                <RadioButton GroupName="TypeDay" Content="Будний" Margin="10 0" Checked="RadioButton_Checked" IsChecked="True"/>
+                <RadioButton GroupName="TypeDay" Content="Выходной" Margin="10 0" Checked="RadioButton_Checked"/>
+                <RadioButton GroupName="TypeDay" Content="Праздник" Margin="10 0" Checked="RadioButton_Checked"/>
+            </StackPanel>
+            <Label Content="Выберите об'ект!" HorizontalAlignment="Center"
+                   Foreground="Red" Visibility="Hidden"
+                   x:Name="AlarmText" Margin="0 40 0 0"/>
+            <Button Content="Отметить" Margin="10" Click="ButtonAddMark"/>
         </StackPanel>
-
     </Grid>
 </Page>

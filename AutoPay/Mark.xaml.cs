@@ -21,10 +21,19 @@ namespace AutoPay
     /// </summary>
     public partial class Mark : Page
     {
+        TypeOfDays day;
+
         public Mark()
         {
             InitializeComponent();
             showInfo();
+        }
+
+        private enum TypeOfDays
+        {
+            working,
+            weekday,
+            holiday
         }
 
         private void showInfo()
@@ -51,6 +60,65 @@ namespace AutoPay
         private void Button_Caclulate(object sender, RoutedEventArgs e)
         {
             throw new Exception();
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton pressed = (RadioButton)sender;
+            string s = pressed.Content.ToString();
+
+            if (s == "Будний")
+            {
+                day = TypeOfDays.working;
+                return;
+            }
+            if (s == "Выходной")
+            {
+                day = TypeOfDays.weekday;
+                return;
+            }
+            if (s == "Праздник")
+            {
+                day = TypeOfDays.holiday;
+                return;
+            }
+        }
+
+        private void ButtonAddMark(object sender, RoutedEventArgs e)
+        {
+            string countHours = formTime.Text.Trim();
+            int i = listDrivers.SelectedIndex;
+            bool isGood = true;
+
+            if (i == -1)
+            {
+                AlarmText.Visibility = Visibility.Visible;
+                isGood = false;
+            }
+            else
+            {
+                AlarmText.Visibility = Visibility.Hidden;
+            }
+
+            if (countHours == "")
+            {
+                isGood = false;
+
+                formTime.ToolTip = "Заполните поле!";
+                formTime.Foreground = Brushes.Red;
+            }
+            else
+            {
+                formTime.ToolTip = "";
+                formTime.Foreground = Brushes.Black;
+            }
+
+            if (!isGood){ return; }
+
+
+            DataTable tableDriver = SQLbase.Select($"SELECT * FROM Driver");
+
+            DataTable tableMarks = SQLbase.Select($"SELECT * FROM WorkDay where daytype like ''");
         }
     }
 }
