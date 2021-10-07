@@ -82,6 +82,9 @@
     <Compile Include="Mark.xaml.cs">
       <DependentUpon>Mark.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PayMent.xaml.cs">
+      <DependentUpon>PayMent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShowDriverInfo.xaml.cs">
       <DependentUpon>ShowDriverInfo.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Mark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PayMent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

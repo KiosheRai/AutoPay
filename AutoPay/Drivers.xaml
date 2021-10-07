@@ -59,12 +59,23 @@
         <StackPanel Grid.Column="2" Background="White">
             <Label Content="Редактирование" HorizontalAlignment="Center"
                    FontWeight="Bold" FontSize="18" Margin="0 0 0 20"/>
-
+            
             <Button Content="Добавить" Margin="10" Click="Button_DriverAdd"/>
+
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Background="White" materialDesign:HintAssist.Hint="Поиск"
+                     x:Name="formSearch" Margin="10" MaxLength="10" />
+            <StackPanel Orientation="Horizontal" x:Name="RadioButton">
+                <RadioButton GroupName="Rad" Content="По ФИО" Margin="10 0" Checked="RadioButton_Checked" IsChecked="True"/>
+                <RadioButton GroupName="Rad" Content="По ID" Margin="10 0" Checked="RadioButton_Checked"/>
+            </StackPanel>
+            <Button Content="Найти" Margin="10" Click="Button_Find"/>
+            
             <Label Content="Выберите об'ект!" HorizontalAlignment="Center"
                    Foreground="Red" Visibility="Hidden"
-                   x:Name="AlarmText" Margin="0 40 0 0"/>
-            <Button Content="Удалить" Margin="10 0 10 10"
+                   x:Name="AlarmText" Margin="10"/>
+            
+            <Button Content="Удалить" Margin="10 10 10 10"
                     x:Name="DeleteDriver" Click="DeleteDriver_Click"/>
             <Button Content="Просмотреть" Margin="10 0 10 10"
                     Click="ShowCurentDriver" IsDefault="True"/>

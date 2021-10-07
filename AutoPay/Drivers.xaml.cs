@@ -21,10 +21,18 @@ namespace AutoPay
     /// </summary>
     public partial class Drivers : Page
     {
+        TypeOfSearch tSearch;
+
         public Drivers()
         {
             InitializeComponent();
             showInfo();
+        }
+
+        private enum TypeOfSearch
+        {
+            name,
+            id
         }
 
         private void showInfo()
@@ -32,6 +40,22 @@ namespace AutoPay
             DataTable table = SQLbase.Select($"SELECT * FROM Driver");
             listDrivers.ItemsSource = table.DefaultView;
             
+            CountDriversText.Content = $"Кол-во водителей: {table.Rows.Count}";
+        }
+
+        private void showInfo(int id)
+        {
+            DataTable table = SQLbase.Select($"SELECT * FROM Driver where id = {id}");
+            listDrivers.ItemsSource = table.DefaultView;
+
+            CountDriversText.Content = $"Кол-во водителей: {table.Rows.Count}";
+        }
+
+        private void showInfo(string name)
+        {
+            DataTable table = SQLbase.Select($"SELECT * FROM Driver where FIO like '%{name}%'");
+            listDrivers.ItemsSource = table.DefaultView;
+
             CountDriversText.Content = $"Кол-во водителей: {table.Rows.Count}";
         }
 
@@ -66,7 +90,7 @@ namespace AutoPay
 
         private void Button_Caclulate(object sender, RoutedEventArgs e)
         {
-            throw new Exception();
+            NavigationService.Navigate(new Uri("/PayMent.xaml", UriKind.Relative));
         }
 
         private void Button_DriverAdd(object sender, RoutedEventArgs e)
@@ -94,6 +118,89 @@ namespace AutoPay
             
             ShowDriverInfo nextPage = new ShowDriverInfo(Int32.Parse(Table.Rows[i][0].ToString()));
             nav.Navigate(nextPage);
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton pressed = (RadioButton)sender;
+            string s = pressed.Content.ToString();
+
+            if (s == "По ФИО")
+            {
+                tSearch = TypeOfSearch.name;
+                return;
+            }
+            if (s == "По ID")
+            {
+                tSearch = TypeOfSearch.id;
+                return;
+            }
+        }
+
+        private void Button_Find(object sender, RoutedEventArgs e)
+        {
+            string input = formSearch.Text;
+            bool isGood = true;
+
+            if (input.Trim() == "")
+            {
+                formSearch.ToolTip = "Заполните поле!";
+                formSearch.Foreground = Brushes.Red;
+                isGood = false;
+            }
+            else
+            {
+                formSearch.ToolTip = "";
+                formSearch.Foreground = Brushes.Black; ;
+            }
+
+            if(tSearch == TypeOfSearch.name)
+            {
+                foreach (Char x in input)
+                {
+                    if (char.IsDigit(x))
+                    {
+                        formSearch.ToolTip = "Требуется символьное значение!";
+                        formSearch.Foreground = Brushes.Red;
+                        isGood = false;
+                    }
+                    else
+                    {
+                        formSearch.ToolTip = "";
+                        formSearch.Foreground = Brushes.Black;
+
+                    }
+                }
+
+                if (isGood)
+                {
+                    showInfo(input);
+                }
+            }
+            else if( tSearch == TypeOfSearch.id)
+            {
+                foreach (Char x in input)
+                {
+                    if (!char.IsDigit(x))
+                    {
+                        formSearch.ToolTip = "Требуется числовое значение!";
+                        formSearch.Foreground = Brushes.Red;
+                        isGood = false;
+                    }
+                    else
+                    {
+                        formSearch.ToolTip = "";
+                        formSearch.Foreground = Brushes.Black;
+                        
+                    }
+                }
+
+                if (isGood)
+                {
+                    int g = Int32.Parse(input);
+                    showInfo(g);
+                }
+            }
         }
     }
 }
