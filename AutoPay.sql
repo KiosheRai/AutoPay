@@ -90,6 +90,13 @@ values
 (4, 'Сидоренко Дарья', '20-08-2003')
 GO
 
+INSERT INTO WorkDay(driver, datee, shiftt, daytype)
+values
+(1, '07-10-2021', 8, 'Выходной'),
+(3, '06-10-2021', 2, 'Выходной'),
+(4, '07-10-2021', 3, 'Выходной')
+GO
+
 create trigger trig_1
 on Driver
 instead of delete
@@ -112,4 +119,12 @@ select count(*) from Child where driver = 10
 
 select * from Driver
 select * from Child
+select * from WorkDay
 
+select getDate()
+
+SELECT GETDATE ( )
+
+select * from WorkDay where CONVERT(date,GETDATE()) like datee and driver = 2
+
+SELECT * FROM Driver where FIO like '%Егор%'

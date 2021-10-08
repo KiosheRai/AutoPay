@@ -1,4 +1,5 @@
 ﻿<Page x:Class="AutoPay.PayMent"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,6 +10,70 @@
       Title="PayMent">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Background="#FF512DA8">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Height="auto" Content="Главная" 
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                    Click="Button_Main" IsCancel="True"/>
+            <Button Grid.Row="1" Height="auto" Content="Водители"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                    Click="Button_Drivers"/>
+            <Button Grid.Row="2" Height="auto" Content="Отметить"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                    Click="Button_Mark"/>
+            <Button Grid.Row="3" Height="auto" Content="Посчитать"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                    Foreground="AntiqueWhite"/>
+        </Grid>
+
+        <ListView Height="auto" x:Name="listDrivers" Grid.Column="1">
+            <ListView.View>
+
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=id}" 
+                                            Header="№" Width="40" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FIO}" 
+                                            Header="ФИО" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=rate}" 
+                                            Header="Ставка"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=experience}" 
+                                            Header="Стаж"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=children}" 
+                                            Header="Кол-во детей"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Column="2" Background="White">
+            <Label Content="Посчитать" HorizontalAlignment="Center"
+                   FontWeight="Bold" FontSize="18" Margin="0 0 0 20"/>
+
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Background="White" materialDesign:HintAssist.Hint="Поиск"
+                     x:Name="formSearch" Margin="10" MaxLength="10" />
+            <StackPanel Orientation="Horizontal" x:Name="RadioButton1">
+                <RadioButton GroupName="Rad" Content="По ФИО" Margin="10 0" Checked="RadioButton1_Checked" IsChecked="True"/>
+                <RadioButton GroupName="Rad" Content="По ID" Margin="10 0" Checked="RadioButton1_Checked"/>
+            </StackPanel>
+            <Button Content="Найти" Margin="10" Click="Button_Find"/>
+            <StackPanel Orientation="Vertical" x:Name="RadioButtonTypeDay"/>
+
+            <Label Content="Выберите об'ект!" HorizontalAlignment="Center"
+                   Foreground="Red" Visibility="Hidden"
+                   x:Name="AlarmText" Margin="0 40 0 0"/>
+            <Button Content="Посчитать" Margin="10" Click="ButtonGoToCheque"/>
+        </StackPanel>
     </Grid>
 </Page>
