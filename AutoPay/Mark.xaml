@@ -71,7 +71,7 @@
             
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Background="White" materialDesign:HintAssist.Hint="Кол-во часов работы"
-                     x:Name="formTime" Margin="10" MaxLength="2"/>
+                     x:Name="formTime" Margin="10" MaxLength="2" PreviewTextInput="showBonus_PreviewTextInput"/>
             <StackPanel Orientation="Vertical" x:Name="RadioButtonTypeDay">
                 <RadioButton GroupName="TypeDay" Content="Будний" Margin="10 0" Checked="RadioButton_Checked" IsChecked="True"/>
                 <RadioButton GroupName="TypeDay" Content="Выходной" Margin="10 0" Checked="RadioButton_Checked"/>
