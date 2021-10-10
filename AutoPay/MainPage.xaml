@@ -1,4 +1,5 @@
 ﻿<Page x:Class="AutoPay.MainPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -37,6 +38,21 @@
                     Click="Button_Caclulate"/>
             
         </Grid>
-        
+
+        <StackPanel Grid.ColumnSpan="2" Grid.Column="1">
+            <Label Content="AutoPay" FontSize="40" HorizontalAlignment="Center"
+                   Margin="20" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Center" Margin="20 0" TextWrapping="Wrap" FontSize="20" LineHeight="36" FontWeight="DemiBold">
+                <TextBlock.Text>
+                    Приложение «AutoPay» предназначено для автоматизации расчёта зарплаты водителей, в зависимости от текущего тарифа и длительности отработанного времени, премиях и вычетах. Приложение позволит уменьшить временные затраты на расчёт зарплаты водителей. Приложение заберёт на себя часть обязанностей менеджеров компании, автоматизирует расчёт зарплаты за определённый отчётный период.
+                </TextBlock.Text>
+            </TextBlock>
+            
+        </StackPanel>
+
+        <Button Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="2" VerticalAlignment="Top" Height="100" ToolTip="Инструкция" Click="OpenHelp">
+            <materialDesign:PackIcon Kind="HelpBox" Height="50" Width="50" Foreground="Black"></materialDesign:PackIcon>
+        </Button>
+
     </Grid>
 </Page>

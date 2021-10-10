@@ -196,7 +196,7 @@ namespace AutoPay
             {
                 DateTime d = DateT.SelectedDate.Value;
                 SQLbase.Insert($"insert into Child(driver , FIO, birthday) values ({id}, '{name} {surname} {secondname}', '{d.Day}-{d.Month}-{d.Year}')");
-                SQLbase.Insert($"UPDATE driver SET children = (select count(*) from Child where driver = {id})");
+                SQLbase.Insert($"UPDATE driver SET children = (select count(*) from Child where driver = {id}) where id = {id}");
                 MessageBox.Show("Ребёнок добавлен!");
 
                 formName.Text = "";

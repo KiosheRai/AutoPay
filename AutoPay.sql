@@ -111,6 +111,7 @@ values
 go
 
 insert into Paycheck(driver, starte, ende, summa, decrease, bonus) values (1, '01-10-2021', '10-10-2021', 200, 1, 1)
+GO
 
 create trigger trig_1
 on Driver
@@ -123,6 +124,7 @@ begin
 delete from Driver where id in (select id from deleted)
 end
 end
+GO
 
 SET DATEFORMAT DMY;
 GO
