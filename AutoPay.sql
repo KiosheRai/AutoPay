@@ -40,7 +40,7 @@ GO
 
 CREATE TABLE Bonus
 (
-id int primary key not null,
+id int primary key identity(1,1) not null,
 datee date not null,
 summa decimal not null
 )
@@ -48,7 +48,7 @@ GO
 
 CREATE TABLE Decrease
 (
-id int primary key not null,
+id int primary key identity(1,1) not null,
 datee date not null,
 summa decimal not null
 )
@@ -56,7 +56,7 @@ GO
 
 CREATE TABLE Paycheck
 (
-id int primary key not null,
+id int primary key identity(1,1) not null,
 driver int not null, 
 starte date not null,
 ende date not null,
@@ -93,9 +93,24 @@ GO
 INSERT INTO WorkDay(driver, datee, shiftt, daytype)
 values
 (1, '07-10-2021', 8, 'Выходной'),
+(1, '06-10-2021', 8, 'Выходной'),
+(1, '05-10-2021', 8, 'Выходной'),
+(1, '30-10-2021', 8, 'Выходной'),
 (3, '06-10-2021', 2, 'Выходной'),
 (4, '07-10-2021', 3, 'Выходной')
 GO
+
+insert into Bonus(datee, summa)
+values
+(GETDATE(), 200)
+go
+
+insert into Decrease(datee,summa)
+values
+(GETDATE(), 100)
+go
+
+insert into Paycheck(driver, starte, ende, summa, decrease, bonus) values (1, '01-10-2021', '10-10-2021', 200, 1, 1)
 
 create trigger trig_1
 on Driver
@@ -128,3 +143,8 @@ SELECT GETDATE ( )
 select * from WorkDay where CONVERT(date,GETDATE()) like datee and driver = 2
 
 SELECT * FROM Driver where FIO like '%Егор%'
+
+SELECT MAX(id) FROM Bonus
+
+select sum(shiftt) from WorkDay where driver = 1 and datee > '01-10-2021' and datee < '10-10-2021' 
+
