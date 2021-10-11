@@ -43,7 +43,7 @@ namespace AutoPay
 
         private void OpenHelp(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(Environment.CurrentDirectory + "\\help.chm") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo(Environment.CurrentDirectory + "\\Help.chm") { UseShellExecute = true });
         }
     }
 }

@@ -124,7 +124,11 @@ namespace AutoPay
                 showDecrease.Text = "0";
             }
 
-            DataTable summ = SQLbase.Select($"select sum(shiftt) from WorkDay where driver = {id} and datee > '{StartDate}' and datee < '{EndDate}' ");
+            MessageBox.Show($"{StartDate.Day}-{StartDate.Month}-{StartDate.Year}");
+
+
+            MessageBox.Show($"select sum(shiftt) from WorkDay where driver = {id} and datee > '{StartDate.Day}-{StartDate.Month}-{StartDate.Year}' and datee < '{EndDate.Day}-{EndDate.Month}-{EndDate.Year}'");
+            DataTable summ = SQLbase.Select($"select sum(shiftt) from WorkDay where driver = {id} and datee > '{StartDate.Day}-{StartDate.Month}-{StartDate.Year}' and datee < '{EndDate.Day}-{EndDate.Month}-{EndDate.Year}'");
 
             SQLbase.Insert($"insert into Bonus(datee, summa) values (GETDATE(), {showBonus.Text})");
             SQLbase.Insert($"insert into Decrease(datee,summa) values (GETDATE(), {showDecrease.Text})");
@@ -134,7 +138,7 @@ namespace AutoPay
             showSummaBefore.Text = (Int32.Parse(summ.Rows[0][0].ToString()) * 15).ToString();
             showSumma.Text = (Int32.Parse(showSummaBefore.Text) - Int32.Parse(showDecrease.Text) + Int32.Parse(showBonus.Text)).ToString();
 
-            SQLbase.Insert($"insert into Paycheck(driver, starte, ende, summa, decrease, bonus) values ({id}, '{StartDate}', '{EndDate}', {showSumma.Text}, {table.Rows[0][0]}, {table1.Rows[0][0]})");
+            SQLbase.Insert($"insert into Paycheck(driver, starte, ende, summa, decrease, bonus) values ({id}, '{StartDate.Day}-{StartDate.Month}-{StartDate.Year}', '{EndDate.Day}-{EndDate.Month}-{EndDate.Year}', {showSumma.Text}, {table.Rows[0][0]}, {table1.Rows[0][0]})");
 
             name = showNameStr.Text;
             fDate = $"{StartDate.Day}:{StartDate.Month}:{StartDate.Year}";

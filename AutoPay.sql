@@ -148,5 +148,5 @@ SELECT * FROM Driver where FIO like '%Åãîğ%'
 
 SELECT MAX(id) FROM Bonus
 
-select sum(shiftt) from WorkDay where driver = 1 and datee > '01-10-2021' and datee < '10-10-2021' 
+select sum(shiftt) from WorkDay where driver = 1 and datee > '1-10-2021' and datee < '10-10-2021' 
 
